@@ -2,31 +2,31 @@
 
 include 'config.php';
 
-session_start();
+// session_start();
 
-$user_id = $_SESSION['user_id'];
+// $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-   header('location:login.php');
-}
+// if(!isset($user_id)){
+//    header('location:login.php');
+// }
 
-if(isset($_POST['add_to_cart'])){
+// if(isset($_POST['add_to_cart'])){
 
-   $package_name = $_POST['package_name'];
-   $package_price = $_POST['package_price'];
-   $package_image = $_POST['package_image'];
-   $package_quantity = $_POST['package_quantity'];
+   // $package_name = $_POST['package_name'];
+   // $package_price = $_POST['package_price'];
+   // $package_image = $_POST['package_image'];
+   // $package_quantity = $_POST['package_quantity'];
 
-   $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$package_name' AND user_id = '$user_id'") or die('query failed');
+   // $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$package_name' AND user_id = '$user_id'") or die('query failed');
 
-   if(mysqli_num_rows($check_cart_numbers) > 0){
-      $message[] = 'already added to cart!';
-   }else{
-      mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, quantity, image) VALUES('$user_id', '$package_name', '$package_price', '$package_quantity', '$package_image')") or die('query failed');
-      $message[] = 'package added to cart!';
-   }
+   // if(mysqli_num_rows($check_cart_numbers) > 0){
+   //    $message[] = 'already added to cart!';
+   // }else{
+   //    mysqli_query($conn, "INSERT INTO `cart`(user_id, name, price, quantity, image) VALUES('$user_id', '$package_name', '$package_price', '$package_quantity', '$package_image')") or die('query failed');
+   //    $message[] = 'package added to cart!';
+   // }
 
-}
+// }
 
 ?>
 
@@ -65,32 +65,30 @@ if(isset($_POST['add_to_cart'])){
          if(mysqli_num_rows($select_packages) > 0){
             while($fetch_packages = mysqli_fetch_assoc($select_packages)){
       ?>
-     <form action="" method="post" class="box">
-      <img class="image" src="uploaded_img/<?php echo $fetch_packages['image']; ?>" alt="">
-      <div class="name"><?php echo $fetch_packages['name']; ?></div>
-      <div class="price">$<?php echo $fetch_packages['price']; ?>/-</div>
-      <input type="number" min="1" name="package_quantity" value="1" class="qty">
-      <input type="hidden" name="package_name" value="<?php echo $fetch_packages['name']; ?>">
-      <input type="hidden" name="package_price" value="<?php echo $fetch_packages['price']; ?>">
-      <input type="hidden" name="package_image" value="<?php echo $fetch_packages['image']; ?>">
-      <input type="submit" value="add to cart" name="add_to_cart" class="btn">
-     </form>
+      <div>
+         <a href="trip.php?trip_id=<?php echo $fetch_packages['id']; ?>">
+            <img class="image" src="uploaded_img/<?php echo $fetch_packages['image']; ?>" alt="" /> 
+         </a>
+         <div class="name">  
+            <a href="trip.php?trip_id=<?php echo $fetch_packages['id']; ?>"> 
+               <?php echo $fetch_packages['name']; ?>
+            </a>
+         </div>
+         <div class="price">$<?php echo $fetch_packages['price']; ?>/-</div>
+         <a href="booking.php?trip_id=<?php echo $fetch_packages['id']; ?>" class="btn"> Booking </a>
+      </div>
+      
       <?php
          }
       }else{
-         echo '<p class="empty">packages is not added yet!</p>';
+         ?>
+        <div class="empty">No Tour packege is not added yet! </div>
+    <?php
       }
       ?>
    </div>
 
 </section>
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
