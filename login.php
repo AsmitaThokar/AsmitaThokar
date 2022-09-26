@@ -44,31 +44,35 @@ if(isset($_POST['submit'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>login</title>
+   <title>Login</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/custom.css">
 
 </head>
 <body>
 
+<?php include 'user_header.php'; ?>
+
 <?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
+// print_r($message);
+// if(isset($message)){
+//    foreach($message as $msg){
+//       echo '
+//       <div class="message">
+//          <span>'.$msg.'</span>
+//          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+//       </div>
+//       ';
+//    }
+// }
 ?>
    
-<div class="form-container">
+<div class="form-container form-container-login">
 
    <form action="" method="post">
       <h3>login now</h3>
@@ -79,6 +83,8 @@ if(isset($message)){
    </form>
 
 </div>
+
+<?php include 'footer.php'; ?>
 
 </body>
 </html>

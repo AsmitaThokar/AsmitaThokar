@@ -59,32 +59,30 @@ if(isset($_GET['delete'])){
 	<table>
 		<tr>
          <th>S.N.</th>
+         <th>Package Name</th>
+         <th>Package Price</th>
          <th>User Name</th>
          <th>User Phone No.</th>
          <th>User Email</th>
          <th>User Address</th>
-         <th>Total Package</th>
-         <th>Total Price</th>
-         <th>Payment Method</th>
          <th>Booking Date </th>
          <th>Booking Status </th>
          <th>Action</th>
       </tr>
       <?php
        $sn=1;
-      $select_booking = mysqli_query($conn, "SELECT * FROM `booking`") or die('query failed');
+      $select_booking = mysqli_query($conn, "select booking.name, booking.number, booking.email, booking.address, booking.placed_on, booking.payment_status, packages.price, packages.name as package_name FROM booking, packages WHERE booking.package_id = packages.id") or die('query failed');
       if(mysqli_num_rows($select_booking) > 0){
          while($fetch_booking = mysqli_fetch_assoc($select_booking)){
       ?>
       <tr>
          <td><?php echo $sn; ?></td>
+         <td> <?php echo $fetch_booking['package_name']; ?></td>
+         <td> <?php echo $fetch_booking['price']; ?></td>
          <td> <?php echo $fetch_booking['name']; ?></td>
          <td> <?php echo $fetch_booking['number']; ?></td>
          <td> <?php echo $fetch_booking['email']; ?></td>
          <td> <?php echo $fetch_booking['address']; ?></td>
-         <td> <?php echo $fetch_booking['total_packages']; ?></td>
-         <td> <?php echo $fetch_booking['total_price']; ?></td>
-         <td> <?php echo $fetch_booking['method']; ?></td>
          <td> <?php echo $fetch_booking['placed_on']; ?></td>
          <td>
             <form action="" method="post">

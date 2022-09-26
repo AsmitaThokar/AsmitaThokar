@@ -27,14 +27,14 @@ if(isset($message)){
 
    <div class="header-2">
       <div class="flex">
-         <a href="userhome.php" class="logo">Travel.</a>
+         <a href="index.php" class="logo">Travel</a>
 
          <nav class="navbar">
-            <a href="userhome.php">home</a>
-            <a href="userabout.php">about</a>
-            <a href="shop.php">shop</a>
-            <a href="contact.php">contact</a>
-            <a href="booking.php">booking</a>
+            <a href="index.php">Home</a>
+            <a href="userabout.php">About Us</a>
+            <a href="trips.php">Shop</a>
+            <a href="contact.php">Contact</a>
+            <a href="booking.php">Booking</a>
          </nav>
 
          <div class="icons">

@@ -25,41 +25,44 @@ $conn = mysqli_connect('localhost','root','','tats') or die('connection failed')
             		<a href="#" class="fab fa-instagram"></a>
             		<a href="#" class="fab fa-linkedin"></a>
          		</div>
-         		<p><a href = "login.php">login</a>
-         			<a href = "register.php">register</a></p>
+         		<p><a href = "login.php">Login</a> | <a href = "register.php">Register</a></p>
          	</div>
          </div>
+
+		 <div class="header-2">
+			<div class="flex">
+				<a href="home.php" class="logo">Travel</a>
+				<nav class="navbar">
+					<a href="userabout.php">About Us</a>
+					<a href="trips.php">Tours & Packages</a>
+					<a href="contact.php">Contact</a>
+				</nav>
+			</div>
+		</div>
      </header>
+
+
      <section class = "home">
      	<div class = "content">
      		<h3> Travel around the world</h3>
      		<p> explore,discover,travel</p>
-     		<a href = "userabout.php" class = "white-btn">discover more</a>
+     		<a href = "trips.php" class = "white-btn">discover more</a>
      	</div>
      </section>
      
 
-
-<section class="about">
-
-   <div class="flex">
-
-      <div class="image">
-         <img src="images/jhhhh" alt="">
-      </div>
-
-      <div class="content">
-         <h3>about us</h3>
-         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit quos enim minima ipsa dicta officia corporis ratione saepe sed adipisci?</p>
-         <a href="userabout.php" class="btn">discover more</a>
-      </div>
-
-   </div>
-
-
-
-
-
+	<section class="about">
+		<div class="flex">
+			<div class="image">
+				<img src="images/jhhhh.jpg" alt="">
+			</div>
+			<div class="content">
+				<h3>about us</h3>
+				<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Impedit quos enim minima ipsa dicta officia corporis ratione saepe sed adipisci?</p>
+				<a href="userabout.php" class="btn">discover more</a>
+			</div>
+		</div>
+	</section>
 
    <?php include 'footer.php'; ?>
 

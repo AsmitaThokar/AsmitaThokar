@@ -5,7 +5,7 @@ include 'config.php';
 session_start();
 
 if(!isset($_GET['trip_id'])){
-   header('location:shop.php');
+   header('location:trips.php');
 }
 
 $trip_id = $_GET['trip_id'];
@@ -13,7 +13,7 @@ $trip_id = $_GET['trip_id'];
 $trip_query = mysqli_query($conn, "SELECT * FROM `packages` WHERE id = '$trip_id'") or die('query failed1');
 
 if(mysqli_num_rows($trip_query) === 0){
-   header('location:shop.php');
+   header('location:trips.php');
 }
 
 if(isset($_POST['booking_btn'])){
@@ -21,12 +21,12 @@ if(isset($_POST['booking_btn'])){
       $name = mysqli_real_escape_string($conn, $_POST['name']);
       $number = $_POST['number'];
       $email = mysqli_real_escape_string($conn, $_POST['email']);
-      $method = mysqli_real_escape_string($conn, $_POST['method']);
-      $address = mysqli_real_escape_string($conn, 'Booking , '.', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['district']);
+      // $method = mysqli_real_escape_string($conn, $_POST['method']);
+      $address = mysqli_real_escape_string($conn, 'Booking : '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['district']);
    
       $placed_on = date('d-M-Y');
 
-      $bookingSuccess =  mysqli_query($conn, "INSERT INTO `booking`(name, number, email, method, address, package_id, placed_on) VALUES('$name', '$number', '$email', '$method', '$address', '$trip_id','$placed_on')") or die('query failed2');
+      $bookingSuccess =  mysqli_query($conn, "INSERT INTO `booking`(name, number, email, address, package_id, placed_on) VALUES('$name', '$number', '$email', '$address', '$trip_id','$placed_on')") or die('query failed2');
 
       $message[] = 'booking placed successfully!';
 
@@ -58,17 +58,22 @@ if(isset($_POST['booking_btn'])){
 </div>
 
 <section class="display-Booking">
-       <?php  
-         $grand_total = 0;
-         $selected_trip = mysqli_query($conn, "SELECT * FROM `packages` WHERE id = '$trip_id'") or die('query failed1');
-      ?>
+   <?php  
+      $grand_total = 0;
+      $selected_trip = mysqli_query($conn, "SELECT * FROM `packages` WHERE id = '$trip_id'") or die('query failed1');
 
-      <p> <?php echo $selected_trip['name']; ?> 
-         <span>(<?php echo '$'.$selected_trip['price']; ?>)</span> 
-      </p> <br>
-   
-      <div class="grand-total"> Grand Total : <span> $<?php echo $grand_total; ?>  </span> </div>
+      if(mysqli_num_rows($selected_trip) > 0){
+         while($fetch_cart = mysqli_fetch_assoc($selected_trip)){
+   ?>
 
+      <p> 
+         <span> Tour Package :  </span>   <?php echo $fetch_cart['name']; ?>  <br />
+         <span> Price : </span>           <?php echo '$'.$fetch_cart['price']; ?>  <br />
+      </p> 
+   <?php
+         }
+      }
+   ?>
 </section>
 
 <section class="checkout">
@@ -77,35 +82,37 @@ if(isset($_POST['booking_btn'])){
       <h3>booking placed</h3>
       <div class="flex">
          <div class="inputBox">
-            <span>your name :</span>
+            <span>Name :</span>
             <input type="text" name="name" required placeholder="enter your name">
          </div>
          <div class="inputBox">
-            <span>your number :</span>
+            <span>Phone Number :</span>
             <input type="number" name="number" required placeholder="enter your number">
          </div>
          <div class="inputBox">
-            <span>your email :</span>
+            <span>Email :</span>
             <input type="email" name="email" required placeholder="enter your email">
          </div>
-         <div class="inputBox">
-            <span>payment method :</span>
-            <select name="method">
-               <option value="cash on delivery">cash on delivery</option>
-               <!-- <option value="credit card">credit card</option> -->
+         <?php
+         // <div class="inputBox">
+         //    <span>payment method :</span>
+         //    <select name="method">
+         //       <option value="cash on delivery">cash on delivery</option>
+         //       <!-- <option value="credit card">credit card</option> -->
                
-            </select>
-         </div>
+         //    </select>
+         // </div>
+         ?>
          <div class="inputBox">
-            <span>city :</span>
+            <span>City :</span>
             <input type="text" name="city" required placeholder="e.g. kanibahal">
          </div>
          <div class="inputBox">
-            <span>district :</span>
+            <span>District :</span>
             <input type="text" name="district" required placeholder="e.g. lalitpur">
          </div>
          <div class="inputBox">
-            <span>country :</span>
+            <span>Country :</span>
             <input type="text" name="country" required placeholder="e.g. nepal">
          </div>
           </div>
@@ -114,10 +121,41 @@ if(isset($_POST['booking_btn'])){
 
 </section>
 
+<div
+    class="service-container"
+    data-service="<?= htmlspecialchars($message) ?>"
+>
+
+</div>
+
+
 <?php include 'footer.php'; ?>
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<script>
+    document.ready(function() {
+        querySelect('.service-container').each(function() {
+            var container = $(this);
+            var service = container.data('service');
+
+            if(service){
+               Swal.fire({
+                  position: 'top-end',
+                  icon: 'success',
+                  title: 'Your work has been saved',
+                  showConfirmButton: false,
+                  timer: 2000
+               })
+            }
+
+            // Var "service" now contains the value of $myService->getValue();
+        });
+    });
+</script>
 
 </body>
 </html>

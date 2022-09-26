@@ -42,32 +42,33 @@ if(!isset($admin_id)){
       <div class="box">
          <?php
             $total_pendings = 0;
-            $select_pending = mysqli_query($conn, "SELECT total_price FROM `Booking` WHERE payment_status = 'pending'") or die('query failed');
+            $select_pending = mysqli_query($conn, "SELECT packages.id, packages.name, packages.price, packages.image FROM packages RIGHT JOIN booking ON packages.id=booking.package_id WHERE booking.payment_status = 'pending'") or die('query failed1');
+
             if(mysqli_num_rows($select_pending) > 0){
                while($fetch_pendings = mysqli_fetch_assoc($select_pending)){
-                  $total_price = $fetch_pendings['total_price'];
+                  $total_price = $fetch_pendings['price'];
                   $total_pendings += $total_price;
                };
             };
          ?>
          <h3>$<?php echo $total_pendings; ?>/-</h3>
-         <p>total pendings</p>
+         <p>Total Pendings</p>
       </div>
 
-      <!-- <div class="box">
+      <!-- <div class="box"> -->
          <?php
-            $total_completed = 0;
-            $select_completed = mysqli_query($conn, "SELECT total_price FROM `Booking` WHERE payment_status = 'completed'") or die('query failed');
-            if(mysqli_num_rows($select_completed) > 0){
-               while($fetch_completed = mysqli_fetch_assoc($select_completed)){
-                  $total_price = $fetch_completed['total_price'];
-                  $total_completed += $total_price;
-               };
-            };
-         ?>
-         <h3>$<?php echo $total_completed; ?>/-</h3>
-         <p>completed payments</p>
-      </div> -->
+            // $total_completed = 0;
+            // $select_completed = mysqli_query($conn, "SELECT total_price FROM `Booking` WHERE payment_status = 'completed'") or die('query failed2');
+            // if(mysqli_num_rows($select_completed) > 0){
+            //    while($fetch_completed = mysqli_fetch_assoc($select_completed)){
+            //       $total_price = $fetch_completed['total_price'];
+            //       $total_completed += $total_price;
+            //    };
+            // };
+        ?>
+          <!-- <h3>$<?php // echo $total_completed; ?>/-</h3>
+          <p>completed payments</p>
+       </div>  -->
 
       <div class="box">
          <?php 

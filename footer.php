@@ -4,18 +4,16 @@
 
       <div class="box">
          <h3>quick links</h3>
-         <a href="userhome.php">home</a>
-         <a href="userabout.php">about</a>
-         <a href="shop.php">shop</a>
-         <a href="contact.php">contact</a>
+         <a href="home.php">Home</a>
+         <a href="userabout.php">About Us</a>
+         <a href="trips.php">Tours & Packages</a>
       </div>
 
       <div class="box">
          <h3>extra links</h3>
          <a href="login.php">login</a>
          <a href="register.php">register</a>
-         <a href="cart.php">cart</a>
-         <a href="booking.php">Booking</a>
+         <a href="contact.php">Contact</a>
       </div>
 
       <div class="box">

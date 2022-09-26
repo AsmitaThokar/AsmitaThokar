@@ -2,13 +2,13 @@
 
 include 'config.php';
 
-session_start();
+// session_start();
 
-$user_id = $_SESSION['user_id'];
+// $user_id = $_SESSION['user_id'];
 
-if(!isset($user_id)){
-   header('location:login.php');
-}
+// if(!isset($user_id)){
+//    header('location:login.php');
+// }
 
 ?>
 
@@ -33,7 +33,7 @@ if(!isset($user_id)){
 
 <div class="heading">
    <h3>about us</h3>
-   <p> <a href="userhome.php">userhome</a> / about </p>
+   <p> <a href="userhome.php">Home</a> / About Us</p>
 </div>
 
 <section class="about">
@@ -54,13 +54,6 @@ if(!isset($user_id)){
    </div>
 
 </section>
-
-
-
-
-
-
-
 
 <?php include 'footer.php'; ?>
 
