@@ -36,7 +36,7 @@ include 'config.php';
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>paackage</title>
+   <title>Tour & Packages</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -44,14 +44,18 @@ include 'config.php';
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
 
+   <link rel="stylesheet" href="css/custom.css">
+
 </head>
 <body>
    
 <?php include 'user_header.php'; ?>
 
 <div class="heading">
-   <h3>our packages</h3>
-   <p> <a href="userhome.php">home</a> / package </p>
+   <div class="content">
+      <h3>Tour Packages</h3>
+      <p> <a href="home.php">Home</a> / tour and trips package </p>
+   </div>   
 </div>
 
 <section class="packages">
@@ -65,14 +69,10 @@ include 'config.php';
          if(mysqli_num_rows($select_packages) > 0){
             while($fetch_packages = mysqli_fetch_assoc($select_packages)){
       ?>
-      <div>
-         <a href="trip.php?trip_id=<?php echo $fetch_packages['id']; ?>">
-            <img class="image" src="uploaded_img/<?php echo $fetch_packages['image']; ?>" alt="" /> 
-         </a>
+      <div class="box">
+         <img class="image" src="uploaded_img/<?php echo $fetch_packages['image']; ?>" alt="" /> 
          <div class="name">  
-            <a href="trip.php?trip_id=<?php echo $fetch_packages['id']; ?>"> 
                <?php echo $fetch_packages['name']; ?>
-            </a>
          </div>
          <div class="price">$<?php echo $fetch_packages['price']; ?>/-</div>
          <a href="booking.php?trip_id=<?php echo $fetch_packages['id']; ?>" class="btn"> Booking </a>
@@ -83,9 +83,7 @@ include 'config.php';
       }else{
          ?>
         <div class="empty">No Tour packege is not added yet! </div>
-    <?php
-      }
-      ?>
+    <?php    }   ?>
    </div>
 
 </section>

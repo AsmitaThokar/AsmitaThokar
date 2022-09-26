@@ -20,6 +20,7 @@ if(isset($_POST['update_booking'])){
 }
 
 if(isset($_GET['delete'])){
+   die('reached here in die');
    $delete_id = $_GET['delete'];
    mysqli_query($conn, "DELETE FROM `booking` WHERE id = '$delete_id'") or die('query failed');
    header('location:admin_booking.php');
@@ -53,20 +54,22 @@ if(isset($_GET['delete'])){
    <h1 class="title">has been booked</h1>
 
    <!-- product CRUD section ends -->
-
+</section>
 <!-- show products  -->
-<section class="show-packages">
+<section class="dashboard">
+<div class="box-container">
+
 	<table>
 		<tr>
          <th>S.N.</th>
          <th>Package Name</th>
          <th>Package Price</th>
-         <th>User Name</th>
-         <th>User Phone No.</th>
-         <th>User Email</th>
-         <th>User Address</th>
+         <th>Customer Name</th>
+         <th>Customer Phone No.</th>
+         <th>Customer Email</th>
+         <th>Customer Address</th>
          <th>Booking Date </th>
-         <th>Booking Status </th>
+         <!-- <th>Booking Status </th> -->
          <th>Action</th>
       </tr>
       <?php
@@ -84,6 +87,8 @@ if(isset($_GET['delete'])){
          <td> <?php echo $fetch_booking['email']; ?></td>
          <td> <?php echo $fetch_booking['address']; ?></td>
          <td> <?php echo $fetch_booking['placed_on']; ?></td>
+         <?php 
+         /*
          <td>
             <form action="" method="post">
                <input type="hidden" name="booking_id" value="<?php echo $fetch_booking['id']; ?>">
@@ -95,6 +100,8 @@ if(isset($_GET['delete'])){
                <!-- <input type="submit" value="update" name="update_booking" class="option-btn"> -->
             </form>
          </td>
+         */
+         ?>
          <td>
             <a href="admin_booking.php?delete=<?php echo $fetch_booking['id']; ?>" onclick="return confirm('delete this booking?');" class="delete-btn">delete</a>
          </td>
@@ -107,6 +114,8 @@ if(isset($_GET['delete'])){
       }
       ?>
    </table>
+</div>
+
 </section>
 
 <!-- custom admin js file link  -->

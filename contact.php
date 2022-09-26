@@ -20,12 +20,15 @@ if(isset($_POST['send'])){
    $select_message = mysqli_query($conn, "SELECT * FROM `message` WHERE name = '$name' AND email = '$email' AND number = '$number' AND message = '$msg'") or die('query failed');
 
    if(mysqli_num_rows($select_message) > 0){
-      $message[] = 'message sent already!';
+      // $message[] = 'message sent already!';
+      $_SESSION['message'] = 'Message sent successfully!<br /><br /> We will contact you soon.';
+
    }else{
       mysqli_query($conn, "INSERT INTO `message`(name, email, number, message) VALUES('$name', '$email', '$number', '$msg')") or die('query failed');
-      $message[] = 'message sent successfully!';
-   }
+      // $message[] = 'message sent successfully!';
+      $_SESSION['message'] = 'Message sent successfully!<br /><br /> We will contact you soon.';
 
+   }
 }
 
 ?>
@@ -36,13 +39,14 @@ if(isset($_POST['send'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>contact</title>
+   <title>Contact Us</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/custom.css">
 
 </head>
 <body>
@@ -50,8 +54,10 @@ if(isset($_POST['send'])){
 <?php include 'user_header.php'; ?>
 
 <div class="heading">
-   <h3>contact us</h3>
-   <p> <a href="userhome.php">userhome</a> / contact </p>
+   <div class="content">
+      <h3>contact us</h3>
+      <p> <a href="home.php">Home</a> / Contact </p>
+   </div>   
 </div>
 
 <section class="contact">
@@ -73,6 +79,29 @@ if(isset($_POST['send'])){
 
 <!-- custom js file link  -->
 <script src="js/script.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+      let sessionMessage = "<?php if(isset($_SESSION['message'])){
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                     } else { null; } ?>"
+
+            if(sessionMessage){
+               Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: sessionMessage,
+                  showConfirmButton: true,
+                  // timer: 2000
+               }).then((result) => {
+                  location.href = 'home.php';
+               })
+            }
+
+</script>
+
 
 </body>
 </html>

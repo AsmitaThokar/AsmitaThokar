@@ -40,6 +40,7 @@ if(isset($_POST['add_package'])){
 }
 
 if(isset($_GET['delete'])){
+   die('reached here in die');
    $delete_id = $_GET['delete'];
    $delete_image_query = mysqli_query($conn, "SELECT image FROM `packages` WHERE id = '$delete_id'") or die('query failed');
    $fetch_delete_image = mysqli_fetch_assoc($delete_image_query);
@@ -102,10 +103,10 @@ if(isset($_POST['update_package'])){
 
 <section class="add-packages">
 
-   <h1 class="title">shop packages</h1>
+   <h1 class="title">Tour packages</h1>
 
    <form action="" method="post" enctype="multipart/form-data">
-      <h3>add package</h3>
+      <h3>add tour package</h3>
       <input type="text" name="name" class="box" placeholder="enter package name" required><br>
       <input type="number" min="0" name="price" class="box" placeholder="enter package price" required><br>
       <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required><br>
@@ -117,7 +118,8 @@ if(isset($_POST['update_package'])){
 <!-- product CRUD section ends -->
 
 <!-- show products  -->
-<section class="show-packages">
+<section class="dashboard">
+<div class="box-container">
 	<table>
 		<tr>
          <th>S.N.</th>
@@ -151,6 +153,7 @@ if(isset($_POST['update_package'])){
       }
       ?>
    </table>
+</div>
 </section>
 
 <section class="edit-package-form">

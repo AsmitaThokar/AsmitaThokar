@@ -17,7 +17,17 @@ window.onscroll = () =>{
    accountBox.classList.remove('active');
 }
 
-document.querySelector('#close-update').onclick = () =>{
+// document.querySelector('#close-update').onclick = () =>{
+//    document.querySelector('.edit-package-form').style.display = 'none';
+//    window.location.href = 'admin_packages.php';
+// }
+
+var el = document.getElementById('close-update');
+if(el){
+  el.addEventListener('click', addingClosingEventListener, false);
+}
+
+function addingClosingEventListener () { 
    document.querySelector('.edit-package-form').style.display = 'none';
    window.location.href = 'admin_packages.php';
-}
+ };

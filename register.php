@@ -1,7 +1,7 @@
 <?php
 
 include 'config.php';
-
+session_start();
 if(isset($_POST['submit'])){
 
    $name = mysqli_real_escape_string($conn, $_POST['name']);
@@ -13,14 +13,17 @@ if(isset($_POST['submit'])){
    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
    if(mysqli_num_rows($select_users) > 0){
-      $message[] = 'user already exist!';
+      // $message[] = 'user already exist';
+      $_SESSION['message'] = 'user already exist!<br /><br /> Please try with differnt user id.';
    }else{
       if($pass != $cpass){
-         $message[] = 'confirm password not matched!';
+         // $message[] = 'confirm password not matched!';
+         $_SESSION['message'] = 'confirm password not matched!<br /><br /> Please try again';
       }else{
          mysqli_query($conn, "INSERT INTO `users`(name, email, password, user_type) VALUES('$name', '$email', '$cpass', '$user_type')") or die('query failed');
-         $message[] = 'registered successfully!';
-         header('location:login.php');
+         // $message[] = 'registered successfully!';
+         $_SESSION['message'] = 'user Registered Successfully!';
+         // header('location:login.php');
       }
    }
 
@@ -47,38 +50,76 @@ if(isset($_POST['submit'])){
 
 <?php include 'user_header.php'; ?>
 
-<?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
-?>
+
    
 <div class="form-container form-container-register">
+<!-- <div style="float: left;"> -->
+
+<!-- </div> -->
+
+<div style="display:inline;">
+
 
    <form action="" method="post">
-      <h3>register now</h3>
+    
+
+      <?php
+// if(isset($message)){
+//    foreach($message as $message){
+//       echo '
+//       <div class="message" style="display:inline;">
+//          <span>'.$message.'</span>
+//          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+//       </div>
+//       ';
+//    }
+// }
+?>
+
+<h3>Admin Register</h3>
+
       <input type="text" name="name" placeholder="enter your name" required class="box">
       <input type="email" name="email" placeholder="enter your email" required class="box">
       <input type="password" name="password" placeholder="enter your password" required class="box">
       <input type="password" name="cpassword" placeholder="confirm your password" required class="box">
-      <select name="user_type" class="box">
+      <!-- <select name="user_type" class="box">
          <option value="user">user</option>
          <option value="admin">admin</option>
-      </select>
+      </select> -->
+      <input type="hidden" name="user_type" value="admin" />
       <input type="submit" name="submit" value="register now" class="btn">
       <p>already have an account? <a href="login.php">login now</a></p>
    </form>
+</div>
+
 
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script src="js/script.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+      let sessionMessage = "<?php if(isset($_SESSION['message'])){
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                     } else { null; } ?>"
+
+            if(sessionMessage){
+               Swal.fire({
+                  position: 'center',
+                  icon: 'success',
+                  title: sessionMessage,
+                  showConfirmButton: true,
+                  // timer: 2000
+               }).then((result) => {
+                  location.href = 'register.php';
+               })
+            }
+
+</script>
 
 </body>
 </html>

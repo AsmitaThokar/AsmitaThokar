@@ -40,7 +40,8 @@ if(isset($_GET['delete'])){
 
 
 <!-- show messages  -->
-<section class="show-messages">
+<section class="dashboard">
+<div class="box-container">
 	<table>
 		<tr>
          <th>S.N.</th>
@@ -74,6 +75,7 @@ if(isset($_GET['delete'])){
       }
       ?>
    </table>
+</div>
 </section>
 
 <!-- custom admin js file link  -->

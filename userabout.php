@@ -18,13 +18,13 @@ include 'config.php';
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>about</title>
+   <title>About Us</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
    <!-- custom css file link  -->
    <link rel="stylesheet" href="css/style.css">
+   <link rel="stylesheet" href="css/custom.css">
 
 </head>
 <body>
@@ -32,8 +32,10 @@ include 'config.php';
 <?php include 'user_header.php'; ?>
 
 <div class="heading">
+<div class="content">
    <h3>about us</h3>
-   <p> <a href="userhome.php">Home</a> / About Us</p>
+   <p> <a href="home.php">Home</a> / About Us</p>
+   </div> 
 </div>
 
 <section class="about">
@@ -41,7 +43,7 @@ include 'config.php';
    <div class="flex">
 
       <div class="image">
-         <img src="images/" alt="">
+         <img src="images/chitwan-national-park2.jpg" alt="">
       </div>
 
       <div class="content">

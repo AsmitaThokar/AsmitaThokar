@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 25, 2022 at 10:13 AM
+-- Generation Time: Sep 26, 2022 at 10:07 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -32,7 +32,6 @@ CREATE TABLE `booking` (
   `name` varchar(100) NOT NULL,
   `number` varchar(12) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `method` varchar(50) NOT NULL,
   `address` varchar(500) NOT NULL,
   `package_id` int(11) NOT NULL,
   `placed_on` varchar(50) NOT NULL,
@@ -43,8 +42,10 @@ CREATE TABLE `booking` (
 -- Dumping data for table `booking`
 --
 
-INSERT INTO `booking` (`id`, `name`, `number`, `email`, `method`, `address`, `package_id`, `placed_on`, `payment_status`) VALUES
-(11, 'asadf', '234234', 'sdf@sdf.com', 'cash on delivery', 'Booking , , asdf, sdf - sdf', 6, '25-Sep-2022', 'pending');
+INSERT INTO `booking` (`id`, `name`, `number`, `email`, `address`, `package_id`, `placed_on`, `payment_status`) VALUES
+(67, 'Lonie Cruickshank', '118434673573', 'your.email+fakedata60253@gmail.com', 'Booking : Lake Dulcehaven, Mayotte - 504 Schmeler Neck', 11, '26-Sep-2022', 'pending'),
+(68, 'Ima Kunde', '323423523432', 'your.email+fakedata16292@gmail.com', 'Booking : Elodymouth, Argentina - 61776 Jovan Turnpike', 6, '26-Sep-2022', 'pending'),
+(69, 'Mathew Torphy', '3979586873', 'your.email+fakedata74849@gmail.com', 'Booking : Mackenzieborough, French Southern Territories - 55358 Schowalter Lodge', 8, '26-Sep-2022', 'pending');
 
 -- --------------------------------------------------------
 
@@ -80,7 +81,8 @@ CREATE TABLE `message` (
 --
 
 INSERT INTO `message` (`id`, `name`, `email`, `number`, `message`) VALUES
-(11, 'hello', 'sas@sdf.com', '234234', 'sfd');
+(16, 'Jayme Byers', 'qozicylo@mailinator.com', '822', 'Et ipsa eum volupta'),
+(17, 'Rosemary Johnston', 'your.email+fakedata55197@gmail.com', '2344795324', 'Quisquam harum sunt eos aut.');
 
 -- --------------------------------------------------------
 
@@ -100,12 +102,12 @@ CREATE TABLE `packages` (
 --
 
 INSERT INTO `packages` (`id`, `name`, `price`, `image`) VALUES
-(6, 'bouddha', 1000, 'pic-2.png'),
-(7, 'dhucdsu', 899000, 'i (2).jpg'),
-(8, 'hucdhcjh', 90990, 'i (2).jpg'),
-(9, 'hdhdjhj', 90909, 'i (1).jpg'),
-(10, 'dhjdhcjd', 909909, 'pic-1.png'),
-(11, 'hgddgcd', 8980, 'i (3).jpg');
+(6, 'Everest Base Camp Trek', 2000, 'everest base camp.jpg'),
+(7, 'Pokhara', 500, 'i (5).jpg'),
+(8, 'Mardi Himal Trek', 700, 'mardi himal.jpg'),
+(9, 'Shey Phokshundo Lake', 2200, 'shey-phokshundo.jpg'),
+(10, 'Lumbini Tour', 900, 'lumbini.jpg'),
+(11, 'Tilicho Lake Trek', 1200, 'tilicho.jpg');
 
 -- --------------------------------------------------------
 
@@ -126,10 +128,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `user_type`) VALUES
-(1, 'admin', 'admin@admin.com', '21232f297a57a5a743894a0e4a801fc3', 'user'),
-(2, 'sams', 'admin@admin1.com', '5f4dcc3b5aa765d61d8327deb882cf99', 'user'),
-(3, 'sams admin', 'sams@admin2.com', '1a1dc91c907325c69271ddf0c944bc72', 'admin'),
-(4, 'admin1', 'admin1@gmail.com', '712123cd000f534df53cfdf739865da9', 'admin');
+(4, 'admin1', 'admin1@gmail.com', '712123cd000f534df53cfdf739865da9', 'admin'),
+(6, 'abcde', 'abcde@abcde.com', 'ab56b4d92b40713acc5af89985d4b786', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -173,7 +173,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `booking`
 --
 ALTER TABLE `booking`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -185,19 +185,19 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `packages`
 --
 ALTER TABLE `packages`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

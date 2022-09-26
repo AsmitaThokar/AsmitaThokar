@@ -130,7 +130,7 @@ section{
 
 .delete-btn{
    background-color: var(--red);
-   padding: 2rem;
+   /* padding: 2rem; */
 }
 
 .white-btn:hover{

@@ -21,7 +21,8 @@ if(isset($_POST['submit'])){
          $_SESSION['admin_id'] = $row['id'];
          header('location:admin_page.php');
 
-      }elseif($row['user_type'] == 'user'){
+      }
+      elseif($row['user_type'] == 'user'){
 
          $_SESSION['user_name'] = $row['name'];
          $_SESSION['user_email'] = $row['email'];
@@ -31,7 +32,9 @@ if(isset($_POST['submit'])){
       }
 
    }else{
-      $message[] = 'incorrect email or password!';
+      // $message[] = 'incorrect email or password!';
+      $_SESSION['message'] = 'Incorrect Email or Password!';
+         
    }
 
 }
@@ -75,7 +78,7 @@ if(isset($_POST['submit'])){
 <div class="form-container form-container-login">
 
    <form action="" method="post">
-      <h3>login now</h3>
+      <h3>Admin Login</h3>
       <input type="email" name="email" placeholder="enter your email" required class="box">
       <input type="password" name="password" placeholder="enter your password" required class="box">
       <input type="submit" name="submit" value="login now" class="btn">
@@ -85,6 +88,30 @@ if(isset($_POST['submit'])){
 </div>
 
 <?php include 'footer.php'; ?>
+
+<script src="js/script.js"></script>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+      let sessionMessage = "<?php if(isset($_SESSION['message'])){
+                        echo $_SESSION['message'];
+                        unset($_SESSION['message']);
+                     } else { null; } ?>"
+
+            if(sessionMessage){
+               Swal.fire({
+                  position: 'center',
+                  icon: 'error',
+                  title: sessionMessage,
+                  showConfirmButton: true,
+                  // timer: 2000
+               }).then((result) => {
+                  location.href = 'login.php';
+               })
+            }
+
+</script>
 
 </body>
 </html>

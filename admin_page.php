@@ -52,7 +52,7 @@ if(!isset($admin_id)){
             };
          ?>
          <h3>$<?php echo $total_pendings; ?>/-</h3>
-         <p>Total Pendings</p>
+         <p>Total package cost</p>
       </div>
 
       <!-- <div class="box"> -->
@@ -88,14 +88,16 @@ if(!isset($admin_id)){
          <p>packages added</p>
       </div>
 
+      <?php /*
       <div class="box">
          <?php 
-            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'user'") or die('query failed');
-            $number_of_users = mysqli_num_rows($select_users);
+            // $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'user'") or die('query failed');
+            // $number_of_users = mysqli_num_rows($select_users);
          ?>
-         <h3><?php echo $number_of_users; ?></h3>
+         <h3><?php //echo $number_of_users; ?></h3>
          <p>normal users</p>
       </div>
+     */  ?>
 
       <div class="box">
          <?php 

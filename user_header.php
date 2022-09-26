@@ -1,14 +1,14 @@
 <?php
-if(isset($message)){
-   foreach($message as $message){
-      echo '
-      <div class="message">
-         <span>'.$message.'</span>
-         <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
-      </div>
-      ';
-   }
-}
+// if(isset($message)){
+//    foreach($message as $message){
+//       echo '
+//       <div class="message">
+//          <span>'.$message.'</span>
+//          <i class="fas fa-times" onclick="this.parentElement.remove();"></i>
+//       </div>
+//       ';
+//    }
+// }
 ?>
 
 <header class="header">
@@ -21,7 +21,7 @@ if(isset($message)){
             <a href="#" class="fab fa-instagram"></a>
             <a href="#" class="fab fa-linkedin"></a>
          </div>
-         <p> <a href="login.php">Login</a> | <a href="register.php">Register</a> </p>
+         <p> Admin(<a href="login.php">Login</a> | <a href="register.php">Register</a>)</p>
       </div>
    </div>
 
@@ -30,6 +30,7 @@ if(isset($message)){
          <a href="home.php" class="logo">Travel</a>
 
          <nav class="navbar">
+            <a href="home.php">Home</a>
             <a href="userabout.php">About Us</a>
             <a href="trips.php">Tours & Packages</a>
             <a href="contact.php">Contact</a>

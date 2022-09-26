@@ -74,7 +74,7 @@ section{
 
 .message span{
    font-size: 2rem;
-   color:var(--black);
+   color:var(--red);
 }
 
 .message i{
